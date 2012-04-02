@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="static/style.css" />
+<title>URL Shortener</title>
+
+<head>
+        <title> </title>
+        <script src="/static/AJS.js" type="text/javascript"></script> 
+        <script src="/static/AJS_fx.js" type="text/javascript"></script> 
+        <script>
+            function toggle(link, id)
+            {
+                el = AJS.$(id);
+
+                if (AJS.isElementHidden(el))
+                {
+                    AJS.showElement(el);
+                    AJS.fx.fadeIn(el, {
+                        onComplete: function() {
+                            AJS.setHTML(link, 'Click to hide');
+                       
+                        }
+                    });
+                } 
+                else
+                {
+                    AJS.fx.fadeOut(el, {
+                        onComplete: function() { 
+                            AJS.hideElement(el); 
+                            AJS.setHTML(link, 'Click to expand :');
+                        } 
+                    });
+                }
+            }
+
+            {% if slug %}
+
+          
+            AJS.AEV(window, 'load', function() 
+            {
+                toggle(AJS.$('toggleSlug'), 'slug');
+            });
+            {% endif %}
+        </script>
+    
+</head>
+
+<body>
+<div id="container">
+		<div id="header">
+        	<h1>URL<span class="off">Shortener</span></h1>
+            <h2></h2>
+        </div>   
+        
+        <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+              <li class="menuitem"><a href="#"></a></li>
+            </ul>
+        </div>
+        
+        <div id="leftmenu">
+
+        <div id="leftmenu_top"></div>
+
+				<div id="leftmenu_main">    
+                
+                <font size="5" face="arial Black" color="pink	">About<br></font>
+                        
+                <ul><font size="2" face="arial Black" color="Aqua 	"><br> URL Shortener is a free service for shortening web addresses and other URLs. This is useful in many circumstances e.g. when sending an address to a phone via SMS and character count is limited.<br></font>
+
+                </ul>
+
+</div>
+                
+                
+              <div id="leftmenu_bottom"></div>
+
+<div id="leftmenu_top"></div>
+
+				<div id="leftmenu_main">    
+                
+                <font size="5" face="arial Black" color="pink	">Contact<br></font>
+                        
+                <ul><font size="2" face="arial Black" color="Aqua 	"><br> <a style="color: #00FFFF"  href="http://anoopsmohan.blogspot.com">Anoop.S.M</a><br><a style="color: #00FFFF"  href="http://www.facebook.com/#!/profile.php?id=100000371739134">Face Book</a><br>anoopmhn2009@gmail.com<br><br></font>
+
+                </ul>
+
+</div>
+                
+                
+              <div id="leftmenu_bottom"></div>
+        </div>
+        
+        
+        
+        
+		<div id="content">
+        
+        
+        <div id="content_top"></div>
+        <div id="content_main">
+
+<br>
+        <div>
+ <a href="{{ ur }}">{{ url_linktext }}</a>
+           {%if user%}
+          <label> {{user}}</label> {%endif%}
+            <form method="post" align="center">
+                <div>
+<center><font size="5" face="arial black" color="green"> Please enter the URL you want to be shortened:</font><br><br><br>
+                
+<textarea name="url" value="{{url}}" cols="75" rows="2" style="color: #000000; font-family: Verdana; font-size: 13px; "></textarea>
+                    <input type="submit" value="Shorten"> <br/>
+                   
+                    <div id="slug" style="display: none;"><font size="3" face="arial black" color="red">
+                        Type the name of the link you wish to use:</font><br/>
+                        http://url-shortner.appspot.com/<input type=text name="slug" size="40" value="{{slug}}" />
+
+                    </div>
+                    <span><a style="color: #461B7E; font-size: 20px; font-family: arial black" href="#" id="toggleSlug" onclick="toggle(this, 'slug');">Specify your desired URL :</a></span>
+                    <p>
+
+                </div>
+            </form>
+            
+            <br/><center>
+            {% if ShortUrl %}
+            
+               <strong><font color="red">Success: </font></strong></center>
+               
+                Your original link is&nbsp&nbsp&nbsp :  <input id="ref" type=text name="ref" value="{{ref}}" size="62" /><br><br>
+		
+                Your short link is now:  <input id="short_url" type=text name="short_url" value="{{short_url}}" size="40" /> <a style="color: #800517; font-size: 15px; font-family: arial black" href="{{short_url}}" target="_blank" >Follow it</a>.
+                <br/>
+               
+            
+    
+            {% endif %}
+            {% if error  %}
+            
+                <strong><font color="red">Error:</font></strong>
+                {{error}}<br/>
+            
+
+            {% endif %}
+       
+           
+        </div>
+        	
+        </div>
+        <div id="content_bottom"></div><br>
+            
+            
+      </div><div><br><br><br><br>
+                <br><font size="3" face="arial Black" color="Navy">What is URL Shortener?</font><br><font size="2" face="arial black"color="black">
+URL Shortener is a free service for shortening web addresses and other URLs. This is useful in many circumstances e.g. when sending an address to a phone via SMS and character count is limited.<br><br>
+
+As an example you can turn:<br><br>
+
+http://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=louth&sll=53.800651,-4.064941&sspn=33.219383,38.803711&ie=UTF8&hq=&hnear=Louth,+United+Kingdom&z=14<br>
+
+into something much shorter like:<br><br><font size="2" face="arial black"color="red">
+
+http://url-shortner.appspot.com/aw34</font><br><br>
+
+You can also pick a specific meaningful shortened address if you want to, such as:<br><br><font size="2" face="arial black"color="red">
+
+http://url-shortner.appspot.com/myfb</font><br><br> <font size="3" face="arial Black" color="Navy 		">How to use URL Shortener?</font><br><br>
+<font size="2" face="arial black"color="black">
+Type or paste the address you want to shorten into the  box on our homepage and push the "Shorten" button. It's that simple.<br>
+
+If you want to pick a shortened URL instead of having us generate one for you, before pressing "Shorten", click on "Specify your desired URL" and type your choice in the additional box that appears.</font><br><br>
+<font size="3" face="arial Black" color="Navy 		">Uses for URL shortener</font><br><br><font size="2" face="arial black"color="black">
+Here are a few of the most common uses for URL Shortener: -<br><br>
+
+1) Lower the character count when texting web address to a mobile phone via SMS.<br><br>
+2) Lower the character count for instant messaging services or social networking sites like Twitter where space is limited.<br><br>
+3) Work around problems with certain forum or blog software and some older email clients which may not handle very long links or links containing non-English characters correctly or may hyperlink the wrong parts of complex links.<br><br>
+4) Make URLs easier to read aloud using our custom shortened URL facility or our pronounceable URL facility.</font></div>
+<br><br><br><br>
+   </div>
+
+</body>
+</html>
